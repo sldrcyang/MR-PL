@@ -12,7 +12,8 @@ g_matrix0 = read.table("g_matrix.txt", header = T, stringsAsFactors = F)
 exposure_matrix0 = read.table("exposure_matrix.txt", header = T, stringsAsFactors = F)
 outcome = read.table("outcome.txt", header = T, stringsAsFactors = F)
 gwas_assoc0 = read.table("gwas_assoc.txt", header = T, stringsAsFactors = F)
-#scale g_matrix, exposure_matrix and outcome
+
+#scale data
 g_matrix0 = scale(g_matrix0)
 exposure_matrix0 = scale(exposure_matrix0)
 outcome = scale(outcome)
