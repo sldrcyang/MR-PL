@@ -68,4 +68,4 @@ mr_result$exposure_include: the exposures used for MR analysis (after winner's c
 "exposure_1"  "exposure_10" "exposure_11" ...
 ```    
 ## Reproduce
-The the `reproduce/` folder contains all the codes to reproduce our simulation results, including the main simualtion and supplementary simulation.
+The the `reproduce/` folder contains all the codes to reproduce our simulation results, including the main simulation and supplementary simulation.
