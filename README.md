@@ -14,7 +14,7 @@ Make sure you have the R package dependencies below installed and accessible in 
 
 Example data are listed in the `example/` folder.
 ## Usage
-Examples describe in detail how to perform MR-PL can be found in example.R in the `example/` folder.  
+Detail information describes how to perform MR-PL can be found in example.R in the `example/` folder.  
    
 Briefly, if the gwas summary statistics used to selected instrumental snps is based on the same dataset used for MR analyses, the following can be run
 ```
@@ -41,24 +41,29 @@ mr_result = mr_pl(g_matrix0,
 ## Output
 mr_result$main_results: exposures with non-zero causal estimate and its corresponding p-value from lasso projection method
 ```    
-    exposure_name causal_estimate lasso_proj_p
-1   exposure_1      -0.1902849 5.204576e-19
-2  exposure_10      -0.1676381 3.987234e-14
-3  exposure_11      -0.2026717 1.558848e-22
-4  exposure_12      -0.2092596 2.271563e-31
-5  exposure_14       0.1878917 4.603154e-19
-6  exposure_18      -0.1930250 3.658456e-18
-7   exposure_2       0.1902596 2.348510e-20
-8   exposure_4      -0.1685691 1.807560e-15
-9   exposure_6      -0.1814735 4.848565e-19
-10  exposure_9      -0.1850430 3.273956e-16
+  exposure_name causal_estimate lasso_proj_p
+  exposure_1       -0.1902849 5.204576e-19
+  exposure_10      -0.1676381 3.987234e-14
+  exposure_11      -0.2026717 1.558848e-22
+  exposure_12      -0.2092596 2.271563e-31
+  exposure_14       0.1878917 4.603154e-19
+  exposure_18      -0.1930250 3.658456e-18
+  exposure_2        0.1902596 2.348510e-20
+  exposure_4       -0.1685691 1.807560e-15
+  exposure_6       -0.1814735 4.848565e-19
+  exposure_9       -0.1850430 3.273956e-16
 ```    
 mr_result$pleiotropy_test.p: p value of pleiotropy test; if p < 0.05, there exists horizontal pleiotropy, then this MR result should be discarded.
-
+```    
+1
+```    
 mr_result$iv_include: the instrumental snps used for MR analysis (after winner's curse correction)
-
+```    
+"snp_256" "snp_208" "snp_795" "snp_76"  "snp_962"
+...
+```    
 mr_result$exposure_include: the exposures used for MR analysis (after winner's curse correction)
-
-
-
-
+```    
+"exposure_1"  "exposure_10" "exposure_11"
+...
+```    
