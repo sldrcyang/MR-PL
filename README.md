@@ -27,8 +27,8 @@ mr_result = mr_pl(g_matrix0,
                   c = 20, 
                   pleiotropy_test = TRUE)
 ```
+If the gwas summary statistics used to selected IVs is based on another independent dataset, the following can be run  
 ```
-if the gwas summary statistics used to selected IVs is based on another independent dataset, the following can be run  
 mr_result = mr_pl(g_matrix0, 
                   exposure_matrix0, 
                   outcome, 
