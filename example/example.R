@@ -1,11 +1,9 @@
-rm(list = ls())
-setwd("your/path")
 library(pls)
-library(parallel)
 library(glmnet)
 library(lars)
 library(hdi)
 source('mr_pl.R')
+
 
 #load g_matrix, exposure_matrix, outcome, and association results
 g_matrix0 = read.table("g_matrix.txt", header = T, stringsAsFactors = F)
@@ -30,4 +28,3 @@ mr_result$pleiotropy_test.p   #if p < 0.05, there exists horizontal pleiotropy
 mr_result$iv_include
 #the exposures used for MR analysis (after winner's curse correction)
 mr_result$exposure_include
-
