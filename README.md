@@ -39,7 +39,7 @@ mr_result = mr_pl(g_matrix0,
                   pleiotropy_test = TRUE)
 ```    
 ## Output
-mr_result$main_results: exposures with non-zero causal estimate and its corresponding p-value from lasso projection method
+mr_result$main_results: exposures with non-zero causal estimate and its corresponding p-value from lasso projection method.
 ```    
   exposure_name causal_estimate lasso_proj_p
   exposure_1       -0.1902849 5.204576e-19
@@ -57,13 +57,13 @@ mr_result$pleiotropy_test.p: p value of pleiotropy test; if p < 0.05, there exis
 ```    
 1
 ```    
-mr_result$iv_include: the instrumental snps used for MR analysis (after winner's curse correction)
+mr_result$iv_include: the instrumental snps used for MR analysis (after winner's curse correction).
 ```    
-"snp_256" "snp_208" "snp_795" "snp_76"  "snp_962"
-...
+"snp_256" "snp_208" "snp_795" "snp_76"  "snp_962" ...
 ```    
-mr_result$exposure_include: the exposures used for MR analysis (after winner's curse correction)
+mr_result$exposure_include: the exposures used for MR analysis (after winner's curse correction).
 ```    
-"exposure_1"  "exposure_10" "exposure_11"
-...
+"exposure_1"  "exposure_10" "exposure_11" ...
 ```    
+## Reproduce
+The the `reproduce/` folder contains all the codes to reproduce our simulation results, including the main simualtion and supplementary simulation.
