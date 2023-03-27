@@ -1,6 +1,5 @@
 library(pls)
 library(glmnet)
-library(lars)
 library(hdi)
 source('mr_pl.R')
 
