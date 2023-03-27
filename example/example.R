@@ -52,4 +52,3 @@ mr_result$pleiotropy_test.p   #if p < 0.05, there exists horizontal pleiotropy
 mr_result$iv_include
 #the exposures used for MR analysis (after winner's curse correction)
 mr_result$exposure_include
-
