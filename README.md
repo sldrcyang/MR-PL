@@ -7,10 +7,10 @@ Make sure you have the R package dependencies below installed and accessible in 
 `BiocManager::install('glmnet')`  
 `BiocManager::install('hdi')`  
 ## Input files
-* __g_matrix.txt__: * the genotype matrix of n samples and m snps.   
-* __exposure_matrix.txt__: * the exposure matrix of n samples and k exposures.    
-* __outcome_matrix.txt__: * the outcome vector of n samples.    
-* __gwas_assoc.txt__: * the gwas summary statistics of m snps and k exposures, which is usually derived from a previously published study.   
+* __g_matrix.txt__:  the genotype matrix of n samples and m snps.   
+* __exposure_matrix.txt__:  the exposure matrix of n samples and k exposures.    
+* __outcome_matrix.txt__:  the outcome vector of n samples.    
+* __gwas_assoc.txt__:  the gwas summary statistics of m snps and k exposures, which is usually derived from a previously published study.   
 Example data are listed in the `example/` folder.
 ## Usage
 Examples describe how to perform MR-PL can be found in example.R in the `example/` folder.  
