@@ -58,7 +58,7 @@ mr_pl = function(g_matrix0, exposure_matrix0, outcome, gwas_assoc, cutoff, wcc, 
   
   #record results
   result = list()
-  result[['main_results']] = data.frame(image_name=coef_name, causal_estimate = coef_val, lasso_proj_p = p)
+  result[['exposure_results']] = data.frame(image_name=coef_name, causal_estimate = coef_val, lasso_proj_p = p)
   result[['wcc']] = wcc
   result[['c']] = c
   result[['cutoff']] = cutoff
