@@ -26,7 +26,7 @@ mr_result = mr_pl(g_matrix0,
                   gwas_assoc, 
                   cutoff = 5e-8, 
                   wcc = TRUE, 
-                  c = 20, 
+                  c = 20,  #c = 15/25
                   pleiotropy_test = TRUE)
 ```
 If the gwas summary statistics used to selected IVs is based on another independent dataset, the following can be run  
@@ -66,6 +66,10 @@ mr_result$iv_include: the instrumental snps used for MR analysis (after winner's
 mr_result$exposure_include: the exposures used for MR analysis (after winner's curse correction).
 ```    
 "exposure_1"  "exposure_10" "exposure_11" ...
-```    
+```
+mr_result$R2: the prediction R2 of the outcome
+```
+0.202
+```
 ## Reproduce
 The the `reproduce/` folder contains all the codes to reproduce our simulation results, including the baseline simulation and supplementary simulation.
