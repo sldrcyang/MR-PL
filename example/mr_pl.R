@@ -41,7 +41,7 @@ mr_pl = function(g_matrix0, exposure_matrix0, outcome, gwas_assoc, cutoff, wcc, 
   
   residuals = outcome[,1] - outcome_predict[,1]
   sd = sd(residuals)
-  beta = rep(0, ncol(pls.pred)-1)
+  beta = rep(0, ncol(pls.pred))
   sorting = match(coef_name, colnames(pls.pred))
   beta[sorting] = coef_val
   
