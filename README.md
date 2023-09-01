@@ -44,15 +44,15 @@ mr_result = mr_pl(g_matrix0,
 mr_result$main_results: exposures with non-zero causal estimate and its corresponding p-value from lasso projection method.
 ```  
    exposure_name causal_estimate lasso_proj_p
-   exposure_1      -0.1908863 1.298627e-15
-   exposure_10     -0.1690168 1.081104e-12
-   exposure_11     -0.2010710 2.114829e-19
-   exposure_12     -0.2086834 6.027628e-30
-   exposure_14      0.1851574 3.195279e-18
-   exposure_18     -0.1917043 1.185543e-14
-   exposure_2       0.1868070 1.017486e-17
-   exposure_4      -0.1706325 1.118618e-13
-   exposure_6      -0.1796765 1.557436e-16
+   exposure_1      -0.1908863 1.319257e-15
+   exposure_10     -0.1690168 1.085111e-12
+   exposure_11     -0.2010710 2.174622e-19
+   exposure_12     -0.2086834 5.944588e-30
+   exposure_14      0.1851574 3.035465e-18
+   exposure_18     -0.1917043 1.215523e-14
+   exposure_2       0.1868070 9.948648e-18
+   exposure_4      -0.1706325 1.148394e-13
+   exposure_6      -0.1796765 1.577770e-16
    exposure_9      -0.1832399 5.285689e-13
 ```    
 mr_result$pleiotropy_test.p: p value of pleiotropy test; if p < 0.05, there exists horizontal pleiotropy, then this MR result should be discarded.
