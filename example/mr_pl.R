@@ -36,20 +36,23 @@ mr_pl = function(g_matrix0, exposure_matrix0, outcome, gwas_assoc, cutoff, wcc, 
     coef_name = coef_name[-which(coef_name == '(Intercept)')]
   }
   
-  outcome_predict = predict(reg.mod, newx = pls.pred, type = 'response', s=bestlam)  #predict the outcome
+  outcome_predict = predict(reg.mod, newx = pls.pred, s=bestlam)  #predict the outcome
   R2_outcome = cor(outcome[,1], outcome_predict[,1])   # the prediction R2 of the outcome
   
+  residuals = outcome[,1] - outcome_predict[,1]
+  sd = sd(residuals)
+  beta = rep(0, ncol(pls.pred)-1)
+  sorting = match(coef_name, colnames(pls.pred))
+  beta[sorting] = coef_val
+  
   #lasso.proj.p ---
-  out.lasso.proj = lasso.proj(x = pls.pred, y = outcome)
+  out.lasso.proj = lasso.proj(x = pls.pred, y = outcome, betainit=beta, sigma = sd)
   p = as.vector(out.lasso.proj$pval)
   p = p[match(coef_name,exposure_include)]
   
   #pleiotropy test ---
   if (pleiotropy_test == T){
-    outcome.pred = predict(reg.mod, newx = pls.pred, s = bestlam)
-    residual = data.frame(outcome - outcome.pred)
-    
-    reg.sargan = lm(residual[,1] ~ g_matrix)  #regress the residuals on the full set of instruments
+    reg.sargan = lm(residuals ~ g_matrix)  #regress the residuals on the full set of instruments
     R2 = summary(reg.sargan)$adj.r.squared
     sargan.stat = nrow(g_matrix) * R2
     df = ncol(g_matrix) - ncol(pls.pred)
@@ -87,4 +90,3 @@ pred_pls = function(plsdata1_Z, plsdata2_Z){
   names(pls.pred) = gsub(paste('.',best_ncomp, ' comps',sep=''), '', names(pls.pred)) 
   return(pls.pred)
 }
-
