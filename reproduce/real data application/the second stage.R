@@ -6,7 +6,7 @@ library(glmnet)
 library(hdi)
 
 
-load("true_data/results/ukb.c=20.snp_matrix_r2_0.6.and.wm_mean_FA_pls_pred.RData")
+load("true_data/results/ukb.c=20.snp_matrix_r2_0.1.and.wm_mean_FA_pls_pred.RData")
 outcome_matrix = fread('true_data/phenotype/UKBB/ukb.394_pheno_matrix.processed.allsamples.txt', data.table = F, header = T, sep = "\t", stringsAsFactors = F)
 pheno_info = fread('true_data/phenotype/UKBB/ukb.394_pheno_info_nsample.select.txt', data.table = F, header = T, stringsAsFactors = F)
 
@@ -71,12 +71,15 @@ for (i in 2:ncol(outcome_matrix)) {
   
   if (length(coef_val) == 0) {next}
   
-  #desparsified lasso
+  #desparsified lasso---
+  predictions = predict(reg.mod, newx = data[,-1], s = bestlam)
+  residuals = data[,1] - predictions
+  sd = sd(residuals)
   beta = rep(0, ncol(data)-1)
   sorting = match(coef_name, colnames(data)[-1])
   beta[sorting] = coef_val
   
-  outlasso = lasso.proj(x = data[,-1], y = data[,1]) 
+  outlasso = lasso.proj(x = data[,-1], y = data[,1], betainit=beta, sigma = sd) 
   p = outlasso$pval[coef_name]
   #----------------------------------------------------------------
   
@@ -90,7 +93,7 @@ for (i in 2:ncol(outcome_matrix)) {
   snp_matrix1 =  snp_matrix[match(sample_id,  snp_matrix$IID),]
   
   reg.sargan = lm(residual[,1] ~ as.matrix(snp_matrix1[,-1]))
-  R2 = summary(reg.sargan)$adj.r.squared
+  R2 = summary(reg.sargan)$r.squared
   sargan.stat = nrow(snp_matrix1) * R2
   df = ncol(snp_matrix1) - ncol(pls.pred)
   sargan.p = 1 - pchisq(sargan.stat, df = df) 
@@ -122,5 +125,4 @@ result_output = result_output[,c("phenotype","category","field","image_name","Fi
 result_output$fdr = p.adjust(result_output$p_lasso, method = 'fdr', n = nrow(result_output))
 
 
-write.table(result_output,'true_data/results/ukb.c=20.snp_r2_0.6.wm_mean_FA.370+.pls+lasso.coef_p.txt',sep="\t",row.names=F,quote=F)
-
+write.table(result_output,'true_data/results/ukb.c=20.snp_r2_0.1.wm_mean_FA.370+.pls+lasso.coef_p.txt',sep="\t",row.names=F,quote=F)
