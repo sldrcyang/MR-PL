@@ -1,6 +1,5 @@
 rm(list = ls())
 setwd("/home1/yanganyi/Desktop/MR")
-setwd('F:/类脑/1_实操文件/MR')
 library(pls)
 library(parallel)
 library(glmnet)
@@ -21,7 +20,7 @@ pred_pls = function(plsdata1_Z, plsdata2_Z){
   pls.fit = plsr(plsdata2_Z ~ plsdata1_Z, ncomp = 20, validation="CV", jackknife=TRUE) 
 
   RMSE = RMSEP(pls.fit)
-  best_ncomp = which.min(RMSE$val [2,1,-1]) 
+  best_ncomp = which.min(apply(RMSE$val [2,1:20,-1], 2, mean))
   cat(best_ncomp, '\n')
 
   pls.fit = plsr(plsdata2_Z ~ plsdata1_Z, ncomp = best_ncomp, validation="none")
@@ -49,7 +48,6 @@ run_each_setting = function(setting){
   
   for (idx in 1:total_replication){
     load(paste("stimulate/exposure-outcome/stimulation_2/setting_",setting,'/',idx,".exposure-outcome-iv.RData",sep = ''))
-    
     
     result_snp = result_snp[result_snp$Pr...t.. < cutoff, ]
     if (length(unique(result_snp$exposure)) != 20) {break}   
