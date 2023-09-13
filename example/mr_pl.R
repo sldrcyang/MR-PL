@@ -81,7 +81,7 @@ mr_pl = function(g_matrix0, exposure_matrix0, outcome, gwas_assoc, cutoff, wcc, 
 pred_pls = function(plsdata1_Z, plsdata2_Z){
   pls.fit = plsr(plsdata2_Z ~ plsdata1_Z, ncomp = ncol(plsdata2_Z), validation="CV", jackknife=TRUE)
   RMSE = RMSEP(pls.fit) 
-  best_ncomp = which.min(RMSE$val [2,1,-1]) 
+  best_ncomp = which.min(apply(RMSE$val [2,1:20,-1], 2, mean)) 
   
   pls.fit = plsr(plsdata2_Z ~ plsdata1_Z, ncomp = best_ncomp, validation="none") 
   coef = as.matrix(as.data.frame(coef(pls.fit)))
