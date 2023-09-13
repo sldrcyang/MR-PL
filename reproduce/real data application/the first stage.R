@@ -55,9 +55,9 @@ for (i in 2:ncol(image_matrix_resid)) {
 snp_matrix = read.table("true_data/genotype/UKBB/UKBB_extract_wm_meanFA.r2_0.1.xmat.gz", header=T, sep = " ", stringsAsFactors = F)
 snp_matrix = snp_matrix[-1,]
 snp_matrix = snp_matrix[,-1]
-snp_matrix = snp_matrix[,-ncol(snp_matrix)]  #最后一列全是NA
+snp_matrix = snp_matrix[,-ncol(snp_matrix)]
 
-####提取要的snp###
+####extract snps needed###
 snp_info = read.table('true_data/selected_snps/zhuhongtu.signif_snps_FA.r2_0.1.txt', header=T, sep = "\t", stringsAsFactors = F)
 snp_info = snp_info[snp_info$ID != 'IFO', ]
 length(unique(snp_info$rsID))
@@ -97,9 +97,7 @@ pred_pls = function(plsdata1_Z, plsdata2_Z, ncomp){
   pls.fit = plsr(plsdata2_Z ~ plsdata1_Z, ncomp = ncomp, validation="CV", jackknife=TRUE)
   
   RMSE = RMSEP(pls.fit) 
-  #av_RMSE = apply(RMSE$val[2,,-1], 2, mean)
-  #best_ncomp = which.min(av_RMSE)  #which.min(RMSE$val[2,1,-1]) 
-  best_ncomp = which.min(RMSE$val[2,1,-1])  #which.min(RMSE$val[2,1,-1]) 
+  best_ncomp = which.min(apply(RMSE$val [2,1:ncomp,-1], 2, mean))
   cat(best_ncomp, '\n')
   
   pls.fit = plsr(plsdata2_Z ~ plsdata1_Z, ncomp = best_ncomp, validation = "none") 
@@ -123,7 +121,7 @@ names(pls.pred) = gsub(paste('-', unlist(strsplit(names(pls.pred)[1], "-"))[2], 
 pls.pred$IID = snp_matrix$IID
 pls.pred = pls.pred[, c(ncol(pls.pred), 1:(ncol(pls.pred)-1))]
 
-save(snp_matrix, pls.pred, file = paste('true_data/results/ukb.c=',c,'.snp_matrix_r2_0.6.and.wm_mean_FA_pls_pred.RData', sep=''))
+save(snp_matrix, pls.pred, file = paste('true_data/results/ukb.c=',c,'.snp_matrix_r2_0.1.and.wm_mean_FA_pls_pred.RData', sep=''))
 
 
 
