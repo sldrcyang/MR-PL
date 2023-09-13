@@ -126,7 +126,7 @@ save_imagingMR_LAS_results <- function(setting, idx, dataX, dataY, dataM, p, q, 
     uniMR.fullresults <- vector("list", q) ## MR fitting results for one SNP vs. all fa
     for (k in 1:q) {
       MRobj = mr_ivw(mr_input(bx = ulmres.med[[k]][h,1], bxse=ulmres.med[[k]][h,2],
-                              by = ulmres.out[h,1], byse = ulmres.out[h,2]))  #IVW方法
+                              by = ulmres.out[h,1], byse = ulmres.out[h,2]))  #IVW
       uniMR[k,1] = MRobj$Estimate
       uniMR[k,2] = MRobj$StdError
       uniMR[k,3] = MRobj$CILower
