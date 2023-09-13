@@ -69,7 +69,7 @@ mr_result$exposure_include: the exposures used for MR analysis (after winner's c
 ```
 mr_result$R2: the prediction R2 of the outcome
 ```
-0.304
+0.305
 ```
 ## Reproduce
 The the `reproduce/` folder contains all the codes to reproduce our simulation results, including the baseline simulation and supplementary simulation.
