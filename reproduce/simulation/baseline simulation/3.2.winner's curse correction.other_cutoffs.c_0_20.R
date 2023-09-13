@@ -16,7 +16,7 @@ pred_pls = function(plsdata1_Z, plsdata2_Z){
   if (ncol(plsdata1_Z) > 20) {
     pls.fit = plsr(plsdata2_Z ~ plsdata1_Z, ncomp = 20, validation="CV", jackknife=TRUE)
     RMSE = RMSEP(pls.fit)
-    best_ncomp = which.min(RMSE$val [2,1,-1]) 
+    best_ncomp = which.min(apply(RMSE$val [2,1:20,-1], 2, mean))
   }
   else {best_ncomp = ncol(plsdata1_Z)}
   
