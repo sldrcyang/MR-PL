@@ -1,5 +1,5 @@
 rm(list = ls())
-setwd("/home1/yanganyi/Desktop/MR")
+setwd("F:/类脑/1_实操文件/MR/")
 library(data.table)
 library(matlabr)
 library(R.matlab) 
@@ -153,7 +153,7 @@ save_imagingMR_LAS_results <- function(setting, dataX, dataY, dataM, p, q, alpha
   comb2_neglogP <- uniMR.1snp.neglogP ## combine two p-values
   comb2_neglogP[snp_med_pval>alpha] <- 0 
 
-  comb2_neglogP <- comb2_neglogP + matrix(runif(p*q,0,1e-10), p, q) #?????Ƿ?ֹ???󲻿???
+  comb2_neglogP <- comb2_neglogP + matrix(runif(p*q,0,1e-10), p, q)
   
   
   ######################### 3. LAS submatrix #########################
@@ -161,10 +161,10 @@ save_imagingMR_LAS_results <- function(setting, dataX, dataY, dataM, p, q, alpha
   write.table(comb2_neglogP, row.names=F, col.names=F, sep=",",
               file=paste("MR_software/ImagingMR-LAS/trial_results/las_input.setting_",setting,".csv", sep=""))
   ## use LAS matlab function in the mtba package 
-  code <- c("cd 'F:/????/1_ʵ???ļ?/MR/MR_software/ImagingMR-LAS/trial_results/';", 
+  code <- c("cd 'F:/类脑/1_实操文件/MR/MR_software/ImagingMR-LAS/trial_results/';",
             paste("W=readtable('las_input.setting_", setting, ".csv');", sep=""),
             "W1=table2array(W);",
-            "addpath('F:/????/2_???ݱ???????/??????/bi-cluster_matlab_toolbox.win_nix/mtba_win');",
+            "addpath(''F:/类脑/2_数据报告资料/软件包/bi-cluster_matlab_toolbox.win_nix/mtba_win');",
             "res=LAS(W1, 1);", 
             "rowSel=res.RowxNum;",
             "colSel=res.NumxCol;",
@@ -252,10 +252,3 @@ cl = makeCluster(3)
 registerDoParallel(cl)
 result = foreach(setting = 1:total_setting, .combine = 'rbind') %dopar% run_each_setting(setting)
 stopCluster(cl)
-
-
-
-
-
-
-
