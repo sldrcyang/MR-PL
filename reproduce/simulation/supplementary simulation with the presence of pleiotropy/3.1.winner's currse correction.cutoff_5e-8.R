@@ -12,16 +12,18 @@ rm(g_matrix)
 
 
 pred_pls = function(plsdata1_Z, plsdata2_Z){
-  pls.fit = plsr(plsdata2_Z ~ plsdata1_Z, ncomp = 20, validation="CV", jackknife=TRUE)
-  
-  RMSE = RMSEP(pls.fit)
-  best_ncomp = which.min(RMSE$val [2,1,-1])
-  cat(best_ncomp, '\n')
+  if (ncol(plsdata1_Z) > 20) {
+    pls.fit = plsr(plsdata2_Z ~ plsdata1_Z, ncomp = 20, validation="CV", jackknife=TRUE)
+    RMSE = RMSEP(pls.fit)
+    best_ncomp = which.min(apply(RMSE$val [2,1:20,-1], 2, mean))
+  }
+  else {best_ncomp = ncol(plsdata1_Z)}
   
   pls.fit = plsr(plsdata2_Z ~ plsdata1_Z, ncomp = best_ncomp, validation="none")
-  coef = as.matrix(as.data.frame(coef(pls.fit))) 
+  coef = as.matrix(as.data.frame(coef(pls.fit)))
   
   pls.pred = as.data.frame((predict(pls.fit, plsdata1_Z, ncomp = best_ncomp)))
+  names(pls.pred) = gsub(paste('.',best_ncomp, ' comps',sep=''), '', names(pls.pred))
   return(pls.pred)
 }
 
