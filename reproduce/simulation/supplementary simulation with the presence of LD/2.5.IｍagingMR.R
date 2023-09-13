@@ -160,7 +160,7 @@ save_imagingMR_LAS_results <- function(setting, idx, dataX, dataY, dataM, p, q, 
   ######################### 3. LAS submatrix #########################
   ## save the data for passing to Matlab 
   write.table(comb2_neglogP, row.names=F, col.names=F, sep=",",
-              file=paste("MR_software/ImagingMR-LAS/trial_results/las_input.setting_",setting,".", idx,".csv", sep="")) #不区分的话并行会打架
+              file=paste("MR_software/ImagingMR-LAS/trial_results/las_input.setting_",setting,".", idx,".csv", sep=""))
   
   ## use LAS matlab function in the mtba package 
   code <- c("cd 'F:/类脑/1_实操文件/MR/MR_software/ImagingMR-LAS/trial_results/';", 
