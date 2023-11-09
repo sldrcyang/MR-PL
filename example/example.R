@@ -23,9 +23,8 @@ outcome = scale(outcome)
 #wcc: whether to perform winner's curse correction
 #c: the tuning parameter in the winner's curse correction, and we recommended the selection for c as follows: 
     #Step 1. Determine whether the winner's curse correction is required; if the gwas_assoc.txt used to selected IVs is based on another independent dataset, then c=0;
-    #Step 2. Find the grid search range for the parameter c. Here, we strongly recommend the narrowed grid search c range from 15 to 25.
-    #Step 3. Select c with the lowest prediction R2 of outcome in MR from the grid search range. 
-    #Step 4: Examine the robustness of MR results of neighboring values of the selected c. 
+    #Step 2. Find the grid search range for the parameter c. Here, we strongly recommend to select c as 20 based on our results;
+    #Step 3. Examine the robustness of MR results at neighboring values of the selected c.
 #pleiotropy_test: whether to perform pleiotropy test
 
 
@@ -57,5 +56,3 @@ mr_result$pleiotropy_test.p   #if p < 0.05, there exists horizontal pleiotropy
 mr_result$iv_include
 #the exposures used for MR analysis (after winner's curse correction)
 mr_result$exposure_include
-#the prediction R2 of the outcome
-mr_result$R2
