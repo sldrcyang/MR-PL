@@ -23,7 +23,7 @@ outcome = scale(outcome)
 #wcc: whether to perform winner's curse correction
 #c: the tuning parameter in the winner's curse correction, and we recommended the selection for c as follows: 
     #Step 1. Determine whether the winner's curse correction is required; if the gwas_assoc.txt used to selected IVs is based on another independent dataset, then c=0;
-    #Step 2. Find the grid search range for the parameter c. Here, we strongly recommend to select c as 20 based on our results;
+    #Step 2. Choose the value for the parameter c. Here, we strongly recommend to select c as 20 based on our results;
     #Step 3. Examine the robustness of MR results at neighboring values of the selected c (e.g. c = 15 or 25).
 #pleiotropy_test: whether to perform pleiotropy test
 
